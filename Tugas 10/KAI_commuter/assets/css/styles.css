@@ -1,0 +1,301 @@
+/* KAI Commuter UI — based on the supplied Figma screens */
+:root {
+  --kai-navy: #102b46;
+  --kai-navy-2: #173b5b;
+  --kai-blue: #146ba8;
+  --kai-blue-soft: #eaf4fb;
+  --kai-orange: #f26b3a;
+  --kai-orange-soft: #fff0e9;
+  --kai-page: #f4f7fa;
+  --kai-white: #ffffff;
+  --kai-ink: #172b3d;
+  --kai-muted: #667a8d;
+  --kai-line: #dce5ed;
+  --kai-green: #15845d;
+  --kai-green-soft: #e7f6ef;
+  --kai-shadow: 0 10px 28px rgba(16, 43, 70, .08);
+}
+
+html { scroll-behavior: smooth; }
+body.kai-app {
+  min-width: 320px;
+  background: var(--kai-page) !important;
+  color: var(--kai-ink);
+  font-family: "Source Sans Pro", "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+}
+.kai-app *, .kai-app *::before, .kai-app *::after { box-sizing: border-box; }
+.kai-container { width: min(1280px, calc(100% - 48px)); margin-inline: auto; }
+.kai-site-main, .kai-page-wrapper, .content-wrapper { background: var(--kai-page) !important; }
+.kai-site-main { min-height: calc(100vh - 130px); padding: 0 0 56px; }
+.kai-page-wrapper { width: 100%; margin: 0 auto; }
+
+/* Shared top navigation */
+.kai-navbar {
+  position: relative;
+  z-index: 20;
+  width: 100%;
+  min-height: 64px;
+  background: var(--kai-white);
+  border-bottom: 1px solid rgba(220,229,237,.8);
+}
+.kai-nav-inner { min-height: 64px; display: flex; align-items: center; gap: 30px; }
+.kai-brand { display: inline-flex; align-items: center; gap: 10px; min-width: 190px; color: var(--kai-navy); text-decoration: none !important; }
+.kai-brand-mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; flex: 0 0 34px; border-radius: 9px;
+  background: var(--kai-navy); color: #fff;
+}
+.kai-brand-mark svg { width: 25px; height: 25px; display: block; }
+.kai-brand-copy { display: flex; flex-direction: column; line-height: 1; }
+.kai-brand-copy strong { color: var(--kai-navy); font-size: 17px; font-weight: 800; letter-spacing: -.35px; }
+.kai-brand-copy small { margin-top: 4px; color: var(--kai-muted); font-size: 9px; font-weight: 800; letter-spacing: 1.1px; }
+.kai-nav-links { display: flex; align-items: center; justify-content: center; gap: 28px; margin-left: auto; }
+.kai-nav-links a { position: relative; padding: 24px 0 22px; color: var(--kai-muted); text-decoration: none; font-size: 13px; font-weight: 600; transition: color .18s ease; }
+.kai-nav-links a:hover, .kai-nav-links a.active { color: var(--kai-blue); }
+.kai-nav-links a.active::after { content: ""; position: absolute; left: 30%; right: 30%; bottom: 13px; height: 2px; border-radius: 2px; background: var(--kai-orange); }
+.kai-nav-actions { display: flex; align-items: center; gap: 12px; margin-left: 26px; }
+.kai-btn {
+  display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+  min-height: 42px; padding: 0 22px; border: 1px solid transparent; border-radius: 8px;
+  font-size: 13px; font-weight: 700; text-align: center; text-decoration: none !important;
+  cursor: pointer; transition: background .18s ease, border-color .18s ease, transform .18s ease;
+}
+.kai-btn:hover { transform: translateY(-1px); }
+.kai-btn-primary { color: #fff !important; background: var(--kai-blue); border-color: var(--kai-blue); }
+.kai-btn-primary:hover { background: #0f5c91; border-color: #0f5c91; }
+.kai-btn-outline { color: var(--kai-blue) !important; background: #fff; border-color: #8db6d5; }
+.kai-btn-outline:hover { background: var(--kai-blue-soft); border-color: var(--kai-blue); }
+.kai-nav-toggle { display: none; width: 40px; height: 40px; padding: 0; border: 1px solid var(--kai-line); border-radius: 8px; background: #fff; color: var(--kai-navy); font-size: 19px; }
+
+/* Home screen */
+.kai-home-hero { position: relative; min-height: 355px; overflow: hidden; color: #fff; background: var(--kai-navy); }
+.kai-home-hero-inner { position: relative; display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; min-height: 355px; padding: 46px 0 68px; }
+.kai-hero-copy { position: relative; z-index: 2; max-width: 600px; }
+.kai-eyebrow-pill { display: inline-flex; align-items: center; min-height: 25px; padding: 0 13px; border-radius: 20px; color: #d6eaf8; background: var(--kai-navy-2); font-size: 9px; font-weight: 800; letter-spacing: .55px; }
+.kai-hero-title { max-width: 560px; margin: 19px 0 14px; color: #fff; font-size: clamp(32px, 3.3vw, 45px); font-weight: 800; line-height: 1.08; letter-spacing: -.9px; }
+.kai-hero-description { max-width: 510px; margin: 0; color: #d9e6f0; font-size: 14px; line-height: 1.65; }
+.kai-hero-note { display: inline-flex; margin-top: 20px; color: #b5c9da; font-size: 12px; font-weight: 600; }
+.kai-train-visual { width: min(100%, 540px); justify-self: end; align-self: center; margin-top: 16px; }
+.kai-train-visual svg { display: block; width: 100%; height: auto; overflow: visible; }
+.kai-home-content { position: relative; z-index: 3; margin-top: -48px; }
+.kai-search-card {
+  display: grid; grid-template-columns: 1.1fr 1fr auto; align-items: end; gap: 18px;
+  padding: 22px 28px 24px; border: 1px solid var(--kai-line); border-radius: 14px;
+  background: #fff; box-shadow: 0 10px 26px rgba(12,34,54,.13);
+}
+.kai-search-heading { grid-column: 1 / -1; margin: 0 0 -5px; color: var(--kai-navy); font-size: 18px; font-weight: 800; }
+.kai-search-help { grid-column: 1 / -1; margin: -2px 0 0; color: var(--kai-muted); font-size: 11px; }
+.kai-field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+.kai-field label { margin: 0; color: var(--kai-muted); font-size: 11px; font-weight: 700; }
+.kai-input, .kai-select {
+  width: 100%; min-height: 42px; padding: 0 13px; border: 1px solid var(--kai-line); border-radius: 7px;
+  outline: none; background: #fff; color: var(--kai-ink); font-family: inherit; font-size: 12px;
+}
+.kai-input:focus, .kai-select:focus { border-color: #7fb1d4; box-shadow: 0 0 0 3px rgba(20,107,168,.1); }
+.kai-search-card .kai-btn { min-width: 145px; min-height: 42px; }
+.kai-steps { padding: 50px 0 8px; }
+.kai-section-kicker { margin: 0 0 8px; color: var(--kai-orange); font-size: 10px; font-weight: 800; letter-spacing: .45px; text-transform: uppercase; }
+.kai-section-title { margin: 0; color: var(--kai-navy); font-size: 24px; font-weight: 800; letter-spacing: -.35px; }
+.kai-step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+.kai-step-card { min-height: 132px; padding: 20px 21px; border: 1px solid var(--kai-line); border-radius: 11px; background: #fff; }
+.kai-step-number { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 23px; border-radius: 14px; color: var(--kai-blue); background: var(--kai-blue-soft); font-size: 10px; font-weight: 800; }
+.kai-step-card h3 { margin: 12px 0 5px; color: var(--kai-navy); font-size: 14px; font-weight: 800; }
+.kai-step-card p { margin: 0; color: var(--kai-muted); font-size: 11px; line-height: 1.55; }
+
+/* Inner page headings and cards */
+.kai-inner-page { width: min(1280px, calc(100% - 48px)); margin: 0 auto; padding: 44px 0 18px; }
+.kai-page-kicker { margin: 0 0 7px; color: var(--kai-orange); font-size: 10px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+.kai-page-title { margin: 0; color: var(--kai-navy); font-size: 28px; font-weight: 800; line-height: 1.15; letter-spacing: -.5px; }
+.kai-page-subtitle { max-width: 800px; margin: 8px 0 24px; color: var(--kai-muted); font-size: 12px; line-height: 1.55; }
+.kai-panel { border: 1px solid var(--kai-line); border-radius: 12px; background: #fff; box-shadow: 0 4px 16px rgba(16,43,70,.035); }
+.kai-filter-panel { display: grid; grid-template-columns: 1fr 1fr auto; align-items: end; gap: 16px; padding: 17px 20px; }
+.kai-filter-panel .kai-btn { min-width: 175px; min-height: 42px; }
+.kai-results-head { display: flex; align-items: end; justify-content: space-between; margin: 26px 0 12px; }
+.kai-results-head h2 { margin: 0; color: var(--kai-orange); font-size: 10px; font-weight: 800; letter-spacing: .45px; }
+.kai-results-head p { margin: 4px 0 0; color: var(--kai-muted); font-size: 11px; }
+.kai-schedule-list { display: grid; gap: 13px; }
+.kai-schedule-card { display: grid; grid-template-columns: 160px 1fr 190px; align-items: center; gap: 22px; min-height: 120px; padding: 18px 22px; border: 1px solid var(--kai-line); border-radius: 12px; background: #fff; }
+.kai-schedule-meta { display: flex; flex-direction: column; gap: 8px; }
+.kai-code-badge { display: inline-flex; align-self: flex-start; padding: 5px 10px; border-radius: 14px; color: var(--kai-blue); background: var(--kai-blue-soft); font-size: 9px; font-weight: 800; }
+.kai-schedule-time { color: var(--kai-navy); font-size: 25px; font-weight: 800; line-height: 1; }
+.kai-schedule-type { color: var(--kai-muted); font-size: 10px; }
+.kai-schedule-route { padding-left: 22px; border-left: 1px solid var(--kai-line); }
+.kai-route-main { margin: 0 0 7px; color: var(--kai-ink); font-size: 17px; font-weight: 800; }
+.kai-route-main .route-arrow { padding: 0 8px; color: var(--kai-blue); }
+.kai-route-train { margin: 0; color: var(--kai-muted); font-size: 11px; }
+.kai-route-fares { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 11px; }
+.kai-fare-chip { display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; border-radius: 13px; color: var(--kai-green); background: var(--kai-green-soft); font-size: 9px; font-weight: 700; }
+.kai-fare-chip.orange { color: var(--kai-orange); background: var(--kai-orange-soft); }
+.kai-schedule-action { display: flex; flex-direction: column; align-items: stretch; gap: 7px; }
+.kai-schedule-action .kai-btn { width: 100%; min-height: 40px; }
+.kai-slot-note { color: var(--kai-muted); font-size: 9px; text-align: center; }
+.kai-empty-state { padding: 34px 20px; border: 1px dashed #bfd0dd; border-radius: 11px; background: #fff; color: var(--kai-muted); text-align: center; font-size: 13px; }
+
+/* Reservation screen */
+.kai-progress { display: flex; align-items: center; gap: 12px; margin: 0 0 20px; padding: 15px 23px; border: 1px solid var(--kai-line); border-radius: 10px; background: #fff; }
+.kai-progress-step { display: inline-flex; align-items: center; gap: 8px; color: var(--kai-muted); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.kai-progress-step span { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; color: #fff; background: var(--kai-blue); font-size: 10px; }
+.kai-progress-step.pending span { color: var(--kai-muted); background: #eaf0f5; }
+.kai-progress-line { height: 1px; flex: 1; min-width: 18px; background: var(--kai-line); }
+.kai-trip-banner { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 20px; padding: 19px 23px; border-radius: 12px; color: #fff; background: var(--kai-navy); }
+.kai-trip-eyebrow { margin: 0 0 6px; color: #b9d6e9; font-size: 9px; font-weight: 800; letter-spacing: .45px; }
+.kai-trip-route { margin: 0; color: #fff; font-size: 21px; font-weight: 800; }
+.kai-trip-detail { margin: 5px 0 0; color: #d9e6f0; font-size: 11px; }
+.kai-trip-pill { padding: 7px 13px; border-radius: 16px; color: #d6eaf8; background: var(--kai-navy-2); font-size: 10px; font-weight: 700; white-space: nowrap; }
+.kai-reservation-layout { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(280px, 1fr); align-items: start; gap: 18px; }
+.kai-form-panel, .kai-summary-panel { padding: 22px; }
+.kai-panel-title { margin: 0 0 6px; color: var(--kai-navy); font-size: 17px; font-weight: 800; }
+.kai-panel-help { margin: 0 0 20px; color: var(--kai-muted); font-size: 11px; line-height: 1.5; }
+.kai-class-label { margin: 0 0 8px; color: var(--kai-muted); font-size: 11px; font-weight: 700; }
+.kai-class-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; }
+.kai-class-option { position: relative; display: block; min-height: 62px; padding: 12px 14px; border: 1px solid var(--kai-line); border-radius: 9px; cursor: pointer; }
+.kai-class-option.selected { border-color: #6aa2ca; background: var(--kai-blue-soft); }
+.kai-class-option input { position: absolute; opacity: 0; pointer-events: none; }
+.kai-class-option strong { display: block; color: var(--kai-ink); font-size: 12px; font-weight: 800; }
+.kai-class-option small { display: block; margin-top: 4px; color: var(--kai-muted); font-size: 10px; }
+.kai-class-option .selected-tag { display: none; position: absolute; top: 8px; right: 9px; padding: 3px 8px; border-radius: 10px; color: #fff; background: var(--kai-blue); font-size: 8px; font-weight: 800; }
+.kai-class-option.selected .selected-tag { display: inline-block; }
+.kai-passenger-section-title { margin: 0 0 10px; color: var(--kai-orange); font-size: 9px; font-weight: 800; letter-spacing: .45px; }
+.kai-passenger-item { margin-bottom: 10px; padding: 13px; border: 1px solid var(--kai-line); border-radius: 9px; background: #fff; }
+.kai-passenger-item .row { margin-right: -7px; margin-left: -7px; }
+.kai-passenger-item [class*="col-"] { padding-right: 7px; padding-left: 7px; }
+.kai-passenger-item .form-group { margin-bottom: 8px; }
+.kai-passenger-item label { margin-bottom: 5px; color: var(--kai-muted); font-size: 10px; font-weight: 700; }
+.kai-passenger-item .form-control { min-height: 37px; border: 1px solid var(--kai-line); border-radius: 6px; font-size: 12px; }
+.kai-passenger-item .btn-remove { margin-top: 2px; color: #bf4d45; font-size: 10px; }
+.kai-reservation-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; }
+.kai-summary-panel { position: sticky; top: 18px; }
+.kai-summary-row { display: flex; flex-direction: column; gap: 4px; padding: 12px 0; border-bottom: 1px solid var(--kai-line); }
+.kai-summary-row span { color: var(--kai-muted); font-size: 9px; font-weight: 800; letter-spacing: .35px; }
+.kai-summary-row strong { color: var(--kai-ink); font-size: 13px; font-weight: 800; }
+.kai-summary-total { margin: 17px 0 15px; }
+.kai-summary-total span { display: block; color: var(--kai-muted); font-size: 9px; font-weight: 800; }
+.kai-summary-total strong { display: block; margin-top: 5px; color: var(--kai-navy); font-size: 20px; font-weight: 800; }
+.kai-summary-panel .kai-btn { width: 100%; }
+.kai-note { color: var(--kai-muted); font-size: 10px; line-height: 1.45; }
+
+/* Ticket screen */
+.kai-ticket-page { width: min(1280px, calc(100% - 48px)); margin: 0 auto; padding: 42px 0 30px; }
+.kai-success-badge { display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 14px; color: var(--kai-green); background: var(--kai-green-soft); font-size: 9px; font-weight: 800; letter-spacing: .3px; }
+.kai-ticket-list { display: grid; grid-template-columns: minmax(0, 900px); gap: 18px; margin-top: 24px; }
+.kai-ticket-card { overflow: hidden; border: 1px solid var(--kai-line); border-radius: 13px; background: #fff; box-shadow: var(--kai-shadow); }
+.kai-ticket-header { display: flex; align-items: center; justify-content: space-between; min-height: 74px; padding: 15px 24px; color: #fff; background: var(--kai-navy); }
+.kai-ticket-brand { display: flex; align-items: center; gap: 10px; color: #fff; }
+.kai-ticket-brand .kai-brand-mark { width: 32px; height: 32px; flex-basis: 32px; border: 1px solid rgba(255,255,255,.35); }
+.kai-ticket-brand strong { display: block; color: #fff; font-size: 14px; line-height: 1; }
+.kai-ticket-brand small { display: block; margin-top: 4px; color: #d0dfeb; font-size: 8px; letter-spacing: .8px; }
+.kai-ticket-type { color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .8px; }
+.kai-ticket-body { padding: 24px 28px 22px; }
+.kai-ticket-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 35px; }
+.kai-ticket-info span { display: block; margin-bottom: 5px; color: var(--kai-muted); font-size: 9px; font-weight: 800; letter-spacing: .4px; }
+.kai-ticket-info strong { display: block; color: var(--kai-ink); font-size: 14px; font-weight: 800; overflow-wrap: anywhere; }
+.kai-ticket-info.code, .kai-ticket-info.route { grid-column: 1 / -1; }
+.kai-ticket-info.route strong { color: var(--kai-navy); font-size: 18px; }
+.kai-ticket-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 22px; padding-top: 17px; border-top: 1px solid var(--kai-line); }
+.kai-ticket-class { display: inline-flex; padding: 6px 11px; border-radius: 13px; color: var(--kai-blue); background: var(--kai-blue-soft); font-size: 9px; font-weight: 800; }
+.kai-ticket-actions { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.kai-ticket-actions .kai-btn { min-width: 150px; }
+
+/* Footer and small shared elements */
+.kai-app .main-footer { margin: 0; padding: 17px 24px; border-top: 1px solid var(--kai-line); background: #fff; color: var(--kai-muted); font-size: 10px; }
+.kai-app .main-footer .container { width: min(1280px, 100%); max-width: 1280px; padding: 0; }
+.kai-app .main-footer strong { color: var(--kai-navy); }
+.kai-app .main-footer .float-right { color: var(--kai-muted); }
+.kai-app .alert { border-radius: 8px; font-size: 12px; }
+.kai-app .modal-content { border: 1px solid var(--kai-line); border-radius: 12px; }
+
+@media (max-width: 991.98px) {
+  .kai-nav-inner { flex-wrap: wrap; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+  .kai-brand { min-width: 0; margin-right: auto; }
+  .kai-nav-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .kai-nav-actions { margin-left: 0; }
+  .kai-nav-links { display: none; order: 5; width: 100%; flex-direction: column; align-items: stretch; gap: 0; margin: 4px 0 0; padding: 7px 0; border-top: 1px solid var(--kai-line); }
+  .kai-nav-links.open { display: flex; }
+  .kai-nav-links a { padding: 11px 3px; }
+  .kai-nav-links a.active::after { left: 0; right: auto; bottom: 5px; width: 24px; }
+  .kai-home-hero-inner { grid-template-columns: 1fr .75fr; }
+  .kai-hero-title { font-size: 34px; }
+  .kai-search-card { grid-template-columns: 1fr 1fr; }
+  .kai-search-card .kai-btn { width: 100%; }
+  .kai-schedule-card { grid-template-columns: 135px 1fr 150px; gap: 14px; padding: 16px; }
+  .kai-reservation-layout { grid-template-columns: minmax(0, 1.5fr) minmax(260px, 1fr); }
+}
+@media (max-width: 767.98px) {
+  .kai-container, .kai-inner-page, .kai-ticket-page { width: min(100% - 32px, 560px); }
+  .kai-navbar, .kai-nav-inner { min-height: 60px; }
+  .kai-brand-copy strong { font-size: 15px; }
+  .kai-brand-mark { width: 31px; height: 31px; flex-basis: 31px; }
+  .kai-nav-actions .kai-btn { min-height: 36px; padding: 0 14px; font-size: 11px; }
+  .kai-home-hero { min-height: 260px; }
+  .kai-home-hero-inner { display: block; min-height: 260px; padding: 28px 0 34px; }
+  .kai-hero-copy { max-width: 100%; }
+  .kai-hero-title { max-width: 310px; margin: 13px 0 9px; font-size: 27px; letter-spacing: -.55px; }
+  .kai-hero-description { max-width: 295px; font-size: 11px; line-height: 1.45; }
+  .kai-hero-note { margin-top: 10px; font-size: 10px; }
+  .kai-train-visual { position: absolute; right: 0; bottom: 13px; width: 42%; max-width: 170px; margin: 0; opacity: .98; }
+  .kai-home-content { margin-top: -24px; }
+  .kai-search-card { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 17px; border-radius: 12px; }
+  .kai-search-heading { font-size: 16px; }
+  .kai-search-help { font-size: 10px; }
+  .kai-search-card .kai-btn { min-height: 40px; }
+  .kai-steps { padding-top: 34px; }
+  .kai-section-title { font-size: 20px; }
+  .kai-step-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 15px; }
+  .kai-step-card { min-height: 0; padding: 15px; }
+  .kai-step-card h3 { margin-top: 8px; }
+  .kai-inner-page, .kai-ticket-page { padding-top: 28px; }
+  .kai-page-title { font-size: 24px; }
+  .kai-page-subtitle { margin-bottom: 18px; font-size: 11px; }
+  .kai-filter-panel { grid-template-columns: 1fr; gap: 11px; padding: 15px; }
+  .kai-filter-panel .kai-btn { width: 100%; }
+  .kai-results-head { margin-top: 22px; }
+  .kai-schedule-card { grid-template-columns: 1fr auto; gap: 10px 12px; padding: 14px; }
+  .kai-schedule-meta { grid-column: 1; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .kai-schedule-time { font-size: 21px; }
+  .kai-schedule-route { grid-column: 1 / -1; grid-row: 2; padding: 11px 0 0; border-left: 0; border-top: 1px solid var(--kai-line); }
+  .kai-route-main { font-size: 15px; }
+  .kai-schedule-action { grid-column: 2; grid-row: 1; min-width: 112px; }
+  .kai-schedule-action .kai-btn { min-height: 36px; padding: 0 10px; font-size: 10px; }
+  .kai-slot-note { display: none; }
+  .kai-progress { gap: 7px; padding: 12px 10px; }
+  .kai-progress-step { gap: 5px; font-size: 9px; }
+  .kai-progress-step span { width: 20px; height: 20px; }
+  .kai-progress-line { min-width: 8px; }
+  .kai-trip-banner { align-items: flex-start; padding: 15px; }
+  .kai-trip-route { font-size: 18px; }
+  .kai-trip-detail { font-size: 10px; }
+  .kai-trip-pill { font-size: 9px; }
+  .kai-reservation-layout { grid-template-columns: 1fr; gap: 12px; }
+  .kai-form-panel, .kai-summary-panel { padding: 16px; }
+  .kai-summary-panel { position: static; }
+  .kai-class-options { gap: 8px; }
+  .kai-class-option { min-height: 66px; padding: 11px 9px; }
+  .kai-class-option .selected-tag { position: static; margin-top: 6px; }
+  .kai-passenger-item { padding: 10px; }
+  .kai-reservation-actions { align-items: stretch; flex-direction: column; }
+  .kai-reservation-actions .kai-btn { width: 100%; }
+  .kai-ticket-list { grid-template-columns: 1fr; }
+  .kai-ticket-header { min-height: 62px; padding: 12px 15px; }
+  .kai-ticket-body { padding: 17px 15px; }
+  .kai-ticket-grid { gap: 16px 12px; }
+  .kai-ticket-info strong { font-size: 12px; }
+  .kai-ticket-info.route strong { font-size: 15px; }
+  .kai-ticket-bottom { align-items: flex-start; flex-direction: column; }
+  .kai-ticket-actions { flex-direction: column; align-items: stretch; }
+  .kai-ticket-actions .kai-btn { width: 100%; }
+  .kai-app .main-footer { padding: 14px 16px; }
+  .kai-app .main-footer .float-right { display: none; }
+}
+@media print {
+  body.kai-app { background: #fff !important; }
+  .kai-navbar, .kai-ticket-actions, .main-footer, .kai-ticket-page > .kai-ticket-actions, .loading { display: none !important; }
+  .kai-site-main, .kai-ticket-page { width: 100% !important; margin: 0 !important; padding: 0 !important; background: #fff !important; }
+  .kai-ticket-list { display: block; width: 100%; margin: 0; }
+  .kai-ticket-card { margin: 0 0 16px; border: 1px solid #9aa8b4; border-radius: 0; box-shadow: none; break-inside: avoid; page-break-inside: avoid; }
+  .kai-ticket-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (max-width: 767.98px) {
+  /* The supplied mobile Figma header keeps the wordmark and Masuk action only. */
+  .kai-nav-toggle { display: none !important; }
+}
